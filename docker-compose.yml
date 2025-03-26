@@ -4,21 +4,21 @@ services:
   postgres:
     image: postgres:15-alpine
     environment:
-      POSTGRES_USER: cmsuser
-      POSTGRES_PASSWORD: cmspassword
-      POSTGRES_DB: headlesscms
+      POSTGRES_USER: cmsuser       # Database username
+      POSTGRES_PASSWORD: cmspassword  # Database password
+      POSTGRES_DB: cmsdb           # Database name
     ports:
-      - "5432:5432"
+      - "5432:5432"                # Expose PostgreSQL port
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - postgres_data:/var/lib/postgresql/data  # Persist data
 
   redis:
     image: redis:7-alpine
     ports:
-      - "6379:6379"
+      - "6379:6379"                # Expose Redis port
     volumes:
-      - redis_data:/data
+      - redis_data:/data           # Persist Redis data
 
 volumes:
-  postgres_data:
-  redis_data:
+  postgres_data:   # Named volume for PostgreSQL
+  redis_data:      # Named volume for Redis
